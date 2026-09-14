@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f4f8;
+    color: #1e293b;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+
+@keyframes pulse-ring {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.15); }
+}
+
+@keyframes pressure-drop {
+  0% { opacity: 0; transform: translateY(-8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes alert-flash {
+  0%, 100% { opacity: 0; }
+  25%, 75%  { opacity: 0.55; }
+}
+
+/* Live monitoring: continuous pulse for active pressure sites */
+.pulse-green {
+  animation: pulse-ring 2.8s ease-in-out infinite;
+}
+
+.pulse-yellow {
+  animation: pulse-ring 2.2s ease-in-out infinite;
+}
+
+.pulse-red {
+  animation: pulse-ring 1.6s ease-in-out infinite;
+}
+
+/* One-shot ring for new high-risk alerts (2 flashes then stops) */
+.alert-flash-once {
+  animation: alert-flash 0.55s ease-in-out 2;
+}
+
+.slide-in {
+  animation: pressure-drop 0.35s ease-out;
+}
+
+.tab-active {
+  border-bottom: 2px solid #1e40af;
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.tab-inactive {
+  border-bottom: 2px solid transparent;
+  color: #64748b;
+}
+
+.tab-inactive:hover {
+  color: #334155;
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
